@@ -1,0 +1,22 @@
+<!-- place_order.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Place Your Order</h1>
+
+<form method="POST" action="{% url 'place_order' %}">
+    {% csrf_token %}
+
+    <label for="address">Delivery Address:</label>
+    <textarea id="address" name="address" required></textarea>
+
+    <label for="payment_method">Payment Method:</label>
+    <select name="payment_method" required>
+        <option value="credit_card">Credit Card</option>
+        <option value="debit_card">Debit Card</option>
+        <option value="cash_on_delivery">Cash on Delivery</option>
+    </select>
+
+    <button type="submit">Place Order</button>
+</form>
+{% endblock %}

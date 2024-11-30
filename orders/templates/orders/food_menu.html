@@ -1,0 +1,310 @@
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            
+            background-image: url("static/images/light.jpg"); /* Pastel mint green to pastel peach gradient */
+            
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #000000;
+        }
+
+        /* Container for the entire menu */
+        .food-menu-container {
+            padding: 20px;
+            background-color: #cae5f5 ;
+
+        }
+
+        /* Container for categories */
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Each category section */
+        .category-section {
+            width: 100%;
+            background-color: #a4a4a4;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Category name */
+        .category-name {
+            font-size: 1.5em;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Container for food items */
+        .food-items-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            justify-items: center;
+        }
+
+        /* Each food item card */
+        .food-item-card {
+            width: 100%;
+            background-color: #cfa6a6;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid #ddd;
+        }
+
+        .food-item-card:hover {
+            transform: scale(1.05);
+        }
+
+        .food-item-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* Food item details */
+        .food-item-details {
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* Food item name */
+        .food-item-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #010101;
+        }
+
+        /* Food item description */
+        .food-item-description {
+            font-size: 1em;
+            color: #1a1c1c;
+            margin: 10px 0;
+        }
+
+        /* Food item price */
+        .food-item-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #282d2a;
+        }
+
+        /* Buttons for like/dislike */
+        .food-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .like-button,
+        .dislike-button {
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            width: 45%;
+            transition: background-color 0.3s ease;
+        }
+
+        .like-button {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .like-button:hover {
+            background-color: #2ecc71;
+        }
+
+        .dislike-button {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .dislike-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Submit Preferences Button */
+        .submit-preferences-button {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-preferences-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Contact Support Link */
+        .contact-support-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        .contact-support-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'food_menu' %}" class="{% if request.path == '/food-menu/' %}active{% endif %}">Food Menu</a></li>
+            <li><a href="{% url 'contact_support' %}" class="{% if request.path == '/contact-support/' %}active{% endif %}">Contact Support</a></li>
+            
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="{% if request.path == '/login/' %}active{% endif %}">Login</a></li>
+                <li><a href="{% url 'signup' %}" class="{% if request.path == '/signup/' %}active{% endif %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="food-menu-container">
+        <p> 
+            ..............................
+        </p>
+        <h1>Welcome to Our Restaurant</h1>
+        <h2>Food Menu</h2>
+        <!-- Recently Liked Section -->
+        <div class="recently-liked">
+            <p>......</p>
+            <h3>Recently Liked Items</h3>
+            <ul>
+                {% for liked_item in recently_liked %}
+                <li>{{ liked_item.food_item.name }}</li>
+                {% empty %}
+                <li>No items liked recently</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="categories-container">
+                {% for category in categories %}
+                <div class="category-section">
+                    <h3 class="category-name">{{ category.name }}</h3>
+                    <div class="food-items-container">
+                        {% for item in category.items.all %}
+                        <div class="food-item-card">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="food-item-image">
+                            <div class="food-item-details">
+                                <h4 class="food-item-name">{{ item.name }}</h4>
+                                <p class="food-item-description">{{ item.description }}</p>
+                                <p class="food-item-price">₹{{ item.price }}</p>
+
+                                <div class="food-actions">
+                                    <button type="button" class="add-to-cart-button" data-product-id="{{ item.id }}"
+                                        data-product-name="{{ item.name }}" data-product-price="{{ item.price }}">Add to
+                                        Cart</button>
+
+
+                                    <!-- Like/Dislike Form -->
+                                    <form action="{% url 'like_food' item.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="button-like">Like</button>
+                                    </form>
+
+                                    <form action="{% url 'dislike_food' item.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="button-dislike">Dislike</button>
+                                    </form>
+                                </div>
+                                <!-- Optionally, to display recently liked items dynamically -->
+                                <!-- Recently Liked Section -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="submit-preferences-button">Submit Preferences</button>
+        </form>
+
+        <p><a href="{% url 'contact_support' %}" class="contact-support-link">Contact Support</a></p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all "Add to Cart" buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+
+            addToCartButtons.forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();  // Prevent the default button action
+
+                    // Get product data from the button
+                    const productId = button.getAttribute('data-product-id');
+                    const productName = button.getAttribute('data-product-name');
+                    const productPrice = button.getAttribute('data-product-price');
+
+                    // Send AJAX request to add item to the cart
+                    fetch("{% url 'add_to_cart' %}", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'  // Django CSRF token
+                        },
+                        body: JSON.stringify({
+                            product_id: productId,
+                            product_name: productName,
+                            product_price: productPrice
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Item added to cart!');
+                                // Optionally update cart dynamically here
+                            } else {
+                                alert('Failed to add item to cart.');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
+
+</body>

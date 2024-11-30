@@ -1,0 +1,89 @@
+<!-- cart.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Your Cart</h1>
+
+{% if cart %}
+<form method="POST" action="{% url 'place_order' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove</th>
+        </tr>
+        {% for item_id, item in cart.items.items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>₹{{ item.price }}</td>
+            <td>
+                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="10">
+                <button type="button" class="update-cart-button" data-item-id="{{ item_id }}">Update</button>  <!-- Add Update button -->
+            </td>
+            <td>₹{{ item.price * item.quantity }}</td>
+            <td>
+                <a href="{% url 'remove_from_cart' item_id %}">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Place Order</button>
+</form>
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener to all quantity input fields and the update button
+    const updateButtons = document.querySelectorAll('.update-cart-button');
+
+    updateButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent the default form submission or link click
+
+            const itemId = button.dataset.itemId;  // Get item ID from data attribute
+            const quantity = button.previousElementSibling.value;  // Get the quantity from the input field
+
+            // Make sure quantity is valid
+            if (quantity < 1) {
+                alert("Quantity must be at least 1");
+                return;
+            }
+
+            // Send the AJAX request to update the cart
+            fetch(`/update_cart/${itemId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'  // Send CSRF token for security
+                },
+                body: JSON.stringify({
+                    quantity: quantity  // Send the new quantity
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the quantity displayed on the page
+                    const quantityElement = button.previousElementSibling;
+                    quantityElement.value = data.quantity;
+                    alert("Cart updated!");
+                } else {
+                    alert("Failed to update cart.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("There was an error updating the cart.");
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

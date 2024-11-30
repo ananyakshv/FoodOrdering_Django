@@ -1,0 +1,124 @@
+/* Basic Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container */
+h1, h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #2c3e50;
+}
+
+/* Category section */
+.category-section {
+    background-color: #fff;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Category heading */
+.category-name {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #16a085;
+}
+
+/* Food list and items */
+.food-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.food-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.food-item:last-child {
+    border-bottom: none;
+}
+
+.food-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.food-description {
+    font-size: 14px;
+    color: #555;
+}
+
+.food-price {
+    font-size: 16px;
+    color: #e74c3c;
+    margin-top: 5px;
+}
+
+.food-actions {
+    margin-top: 10px;
+}
+
+/* Buttons */
+.like-button, .dislike-button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2ecc71;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.like-button:hover {
+    background-color: #27ae60;
+}
+
+.dislike-button {
+    background-color: #e74c3c;
+}
+
+.dislike-button:hover {
+    background-color: #c0392b;
+}
+
+/* Submit button */
+.submit-preferences-button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 20px auto;
+}
+
+.submit-preferences-button:hover {
+    background-color: #2980b9;
+}
+
+/* Contact support link */
+.contact-support-link {
+    display: block;
+    text-align: center;
+    color: #3498db;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.contact-support-link:hover {
+    color: #2980b9;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'food_menu' %}" class="{% if request.path == '/food-menu/' %}active{% endif %}">Food Menu</a></li>
+            <li><a href="{% url 'contact_support' %}" class="{% if request.path == '/contact-support/' %}active{% endif %}">Contact Support</a></li>
+            
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'login' %}" >Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="{% if request.path == '/login/' %}active{% endif %}">Login</a></li>
+                <li><a href="{% url 'signup' %}" class="{% if request.path == '/signup/' %}active{% endif %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Page content -->
+    {% block content %}{% endblock %}
+    
+</body>
+</html>

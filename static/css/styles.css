@@ -1,0 +1,409 @@
+/* General body styling */
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+    
+    background: linear-gradient(135deg, #a8e6cf, #ffb3ba);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px;  /* Added padding-top for the navbar */
+}
+/* Target the like and dislike buttons */
+.button-like, .button-dislike {
+    font-size: 10px;           /* Increase font size */
+    padding: 15px 30px;        /* Increase padding for larger buttons */
+    width: 10px;          /* Set a minimum width */
+    height: 20px;              /* Set a fixed height */
+    text-align:left;        /* Center text inside button */
+         /* Ensure buttons align correctly */
+}
+
+/* Optional: Add more styling for appearance */
+.button-like {
+    background-color: #4CAF50; /* Green background for like button */
+    color: white;              /* White text */
+    border-radius: 5px;        /* Rounded corners */
+}
+
+.button-dislike {
+    background-color: #f44336; /* Red background for dislike button */
+    color: white;              /* White text */
+    border-radius: 5px;        /* Rounded corners */
+}
+
+/* Optional: Add hover effect */
+.button-like:hover, .button-dislike:hover {
+    opacity: 0.8;              /* Slight opacity change on hover */
+}
+
+
+/* Form container styling */
+.signup-container {
+    background-color: #ffffff;  /* White background for the form */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Heading styling */
+.signup-container h1 {
+    text-align: center;
+    color: #4CAF50;  /* Green color for the heading */
+    margin-bottom: 30px;
+}
+
+/* Form group (input fields) styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333333;  /* Dark gray for labels */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;  /* Light gray border */
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #f9f9f9;  /* Light background for inputs */
+    color: #333;  /* Dark text color */
+}
+
+/* Change input border on focus */
+.form-group input:focus {
+    border-color: #4CAF50;  /* Green border on focus */
+    outline: none;
+    background-color: #ffffff;  /* White background when focused */
+}
+
+/* Button styling */
+.btn-submit {
+    background-color: #4CAF50; /* Pastel green button */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;  /* Darker green on hover */
+}
+
+/* Styling for the "Already have an account?" link */
+.signup-container p {
+    text-align: center;
+    margin-top: 20px;
+    color: #333333; /* Dark text color */
+}
+
+.signup-container a {
+    color: #4CAF50;  /* Matching green for the link */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-container a:hover {
+    text-decoration: underline;
+}
+
+/* Add some responsive behavior for smaller screens */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .signup-container {
+        padding: 20px;
+    }
+}
+/* Container for recent liked items */
+
+/* Container for recent liked items */
+.recently-liked {
+    position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        width: 250px;
+        z-index: 100
+}
+
+.recently-liked h3 {
+    font-size: 18px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+}
+
+.recently-liked ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recently-liked ul li {
+    font-size: 14px;
+        color: #34495e;
+}
+
+.recent-likes-container {
+    position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* semi-transparent background */
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        width: 200px;
+        max-height: 400px;
+        overflow-y: auto;
+}
+
+/* Styling the list of recent liked items */
+.recent-likes-list {
+    display: flex;
+    flex-wrap: nowrap;   /* Prevent wrapping; all items in a single row */
+    justify-content: space-between;  /* Evenly distribute the items across the row */
+    gap: 30px;         /* Space between items */
+    margin-top: 20px;
+    overflow-x: auto;   /* Allow horizontal scrolling if needed on small screens */
+}
+
+/* Individual recent liked item */
+.recent-like-item {
+    background-color: #fff;  /* White background for each item */
+    border-radius: 10px;     /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    width: 250px;            /* Fixed width for each item */
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;  /* Smooth hover effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center align the content inside */
+}
+.recently-liked-container h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.recently-liked-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recently-liked-container li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.recently-liked-container li img {
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* Ensure that images fit nicely in the container */
+.recent-like-item img {
+    width: 100%;  /* Make image take up full width of the item */
+    border-radius: 8px;  /* Rounded corners for image */
+    max-height: 200px;    /* Limit the height for consistent image sizes */
+    object-fit: cover;    /* Make sure images cover the space without distortion */
+}
+
+/* Hover effect on the items */
+.recent-like-item:hover {
+    transform: scale(1.05);  /* Slight zoom effect on hover */
+}
+
+/* Responsive Design for Recent Likes */
+@media (max-width: 1024px) {
+    .recent-likes-list {
+        justify-content: space-evenly;  /* Adjust spacing for medium-sized screens */
+    }
+
+    .recent-like-item {
+        width: 220px;  /* Adjust width for medium-sized screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .recent-likes-list {
+        justify-content: center;  /* Center items on smaller screens */
+        overflow-x: scroll;  
+    }
+
+    .recent-like-item {
+        width: 90%;  /* Make the item full width on small screens */
+        max-width: 350px;  /* Max width to prevent overly large items */
+    }
+}
+
+
+/* Styling for the back button */
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #66ccff;  /* Pastel blue */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #3399ff;  /* Darker blue on hover */
+}
+
+/* Contact Support Page Container */
+.contact-support-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Contact Form */
+.contact-support-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Form Inputs */
+.contact-support-form input, 
+.contact-support-form textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Button Styling */
+.submit-btn {
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+.submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Styling */
+/* Navbar container */
+.navbar {
+    width: 100%;
+    background-color: #333; /* Background color */
+    padding: 10px 0;
+    position: fixed; /* Fix it at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Make sure the navbar stays on top */
+    display: flex;
+    justify-content: center; /* Center the navbar content */
+    align-items: center; /* Vertically align the content */
+}
+
+/* Navigation links container */
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center-align the items */
+    gap: 20px; /* Add space between each link */
+    margin: 0;
+    padding: 0;
+}
+
+/* Each individual navigation link */
+.nav-links li {
+    display: inline-block;
+}
+
+/* Styling for navigation links */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Change background on hover */
+.nav-links a:hover {
+    background-color: #444; /* Change the background color when hovered */
+}
+
+/* Styling for active links */
+.nav-links a.active {
+    background-color: #3498db; /* Highlight the active link */
+    color: white;
+}
+
+/* Optional: Adjust the navbar items on smaller screens */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column; /* Stack the items vertically on small screens */
+        gap: 10px;
+    }
+}

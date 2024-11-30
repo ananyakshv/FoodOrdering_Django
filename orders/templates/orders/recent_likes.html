@@ -1,0 +1,26 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="recent-likes-container">
+        <h2>Your Recently Liked Food Items</h2>
+        <div class="recent-likes-list">
+            {% for engagement in recent_liked_items %}
+                <div class="recent-like-item">
+                    <h3>{{ engagement.food_item.name }}</h3>
+                    <p>{{ engagement.food_item.description }}</p>
+                    <p>Price: ${{ engagement.food_item.price }}</p>
+
+                    <!-- Display the food image if available -->
+                    {% if engagement.food_item.image %}
+                        <img src="{{ engagement.food_item.image.url }}" alt="{{ engagement.food_item.name }}">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    
+                    <p>Liked on: {{ engagement.timestamp }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <p><a href="{% url 'food_menu' %}" class="back-btn">Back to Food Menu</a></p>
+    </div>
+{% endblock %}

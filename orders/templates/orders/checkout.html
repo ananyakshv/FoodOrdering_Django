@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+</head>
+<body>
+    <div class="checkout-container">
+        <h2>Checkout</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <label for="payment_method">Payment Method:</label>
+            <select id="payment_method" name="payment_method" required>
+                <option value="cash_on_delivery">Cash on Delivery</option>
+                <option value="online_payment">Online Payment</option>
+            </select>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</body>
+</html>

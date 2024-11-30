@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Food Ordering</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #a8e6cf, #ffb3ba);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-card {
+            background-color: #fdfdfd;  /* Light grayish-white card for subtle contrast */
+            padding: 40px 50px;
+            border-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h2 {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #333; /* Darker text color for clarity */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #ffb3ba;  /* Soft coral color on focus */
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: #888;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #ffb3ba;  /* Pastel coral for the button */
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .login-btn:hover {
+            background-color: #ff8a80;  /* Slightly darker coral shade on hover */
+        }
+
+        .register-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #760000;
+        }
+
+        .register-link a {
+            color: #000000;  /* Pastel mint color for the link */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .register-link a:hover {
+            color: #ffb3ba;  /* Soft coral color on hover */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="login-card">
+        <h2>Login to Your Account</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Username Field -->
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required autofocus>
+                {% if form.username.errors %}
+                    <div class="error-message">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Password Field -->
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+                {% if form.password.errors %}
+                    <div class="error-message">
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Login Button -->
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <!-- Register Link -->
+        <div class="register-link">
+            Don't have an account? <a href="{% url 'signup' %}">Sign up</a>
+        </div>
+    </div>
+</body>
+</html>
