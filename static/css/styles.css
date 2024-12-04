@@ -30,7 +30,7 @@ body {
 
 /* Optional: Add more styling for appearance */
 .button-like {
-    background-color: #4CAF50; /* Green background for like button */
+    background-color: #ababab; /* Green background for like button */
     color: white;              /* White text */
     border-radius: 5px;        /* Rounded corners */
 }
@@ -55,12 +55,13 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     width: 100%;
     max-width: 500px;
+    backdrop-filter: blur(5px);
 }
 
 /* Heading styling */
 .signup-container h1 {
     text-align: center;
-    color: #4CAF50;  /* Green color for the heading */
+    color: #000000;  /* Green color for the heading */
     margin-bottom: 30px;
 }
 
@@ -89,14 +90,14 @@ body {
 
 /* Change input border on focus */
 .form-group input:focus {
-    border-color: #4CAF50;  /* Green border on focus */
+    border-color: #626362;  /* Green border on focus */
     outline: none;
     background-color: #ffffff;  /* White background when focused */
 }
 
 /* Button styling */
 .btn-submit {
-    background-color: #4CAF50; /* Pastel green button */
+    background-color: #454545; /* Pastel green button */
     color: white;
     padding: 12px 20px;
     border: none;
