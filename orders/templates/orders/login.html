@@ -10,7 +10,9 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #a8e6cf, #ffb3ba);
+            background: url('https://media.istockphoto.com/id/922783734/photo/assorted-indian-recipes-food-various.jpg?s=612x612&w=is&k=20&c=DtE7LL5pX3YHuhfB0YoiT2aG9WF2j_zf8irtqfIfBJQ=') no-repeat center center fixed;
+            background-size: cover;
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,8 +20,20 @@
             margin: 0;
         }
 
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            z-index: -1;
+            backdrop-filter: blur(5px); /* Adds a slight blur to the background */
+        }
+
         .login-card {
-            background-color: #fdfdfd;  /* Light grayish-white card for subtle contrast */
+            background-color: rgba(253, 253, 253, 0.9);  /* Semi-transparent card for subtle contrast */
             padding: 40px 50px;
             border-radius: 10px;
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
@@ -30,7 +44,6 @@
 
         h2 {
             font-size: 26px;
-            color: #333;
             margin-bottom: 30px;
             font-weight: 600;
             color: #333; /* Darker text color for clarity */
@@ -90,7 +103,7 @@
         }
 
         .register-link a {
-            color: #000000;  /* Pastel mint color for the link */
+            color: #333;  /* Neutral color for the link */
             text-decoration: none;
             transition: color 0.3s;
         }
@@ -109,11 +122,9 @@
                 transform: translateY(0);
             }
         }
-
     </style>
 </head>
 <body>
-    
     <div class="login-card">
         <h2>Login to Your Account</h2>
         

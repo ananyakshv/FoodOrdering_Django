@@ -2,6 +2,8 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
+    background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080') no-repeat center center fixed;
+
     color: #333;
     margin: 0;
     padding: 0;
